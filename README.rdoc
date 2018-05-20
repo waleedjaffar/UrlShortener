@@ -38,12 +38,12 @@ rake test
 
 This application is configured to auto deploy to Heroku. Application can be accessed at https://hidden-meadow-3938.herokuapp.com
 
-*Design Decisions*
+*Design* *Decisions*
 
 * URL Shortener app does not require authentication. 
 * In order to make sure the generated short URL is unique, application uses PROCESS::CLOCK_REALTIME. However, app validates whether short url already exists and if it does then a new URL is generated.
 
-*Future Improvements*
+*Future* *Improvements*
 
 * Search filters, pagination and sorting in index page for all shortened URLs
 * Better UX
