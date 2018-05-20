@@ -1,28 +1,50 @@
-== README
+== URL Shortener
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+URL Shortener is a Rails application that can be used to create and interpret shortened URLs on your own domain
 
-Things you may want to cover:
+* Dependencies *
 
-* Ruby version
+* Ruby 2.5.1
+* Rails 4.2.10
+* PostgreSQL 9.5
 
-* System dependencies
+* Installation * 
 
-* Configuration
+Clone the repository:
 
-* Database creation
+<code>
+git clone https://github.com/waleedjaffar/url_shortener.git
+</code>
 
-* Database initialization
+then cd into application root and execute
 
-* How to run the test suite
+<code>
+bundle install
+rake db:migrate
+</code>
 
-* Services (job queues, cache servers, search engines, etc.)
+* Testing * 
 
-* Deployment instructions
+After installing the application and running the migrations, execute the following rake task in order to set up test database
 
-* ...
+<code>
+RAILS_ENV=test rake db:create
+rake test
+</code>
 
+* Deployment *
 
-Please feel free to use a different markup language if you do not plan to run
-<tt>rake doc:app</tt>.
+This application is configured to auto deploy to Heroku. Application can be accessed at https://hidden-meadow-3938.herokuapp.com
+
+* Design Decisions *
+
+* URL Shortener app does not require authentication. 
+* In order to make sure the generated short URL is unique, application uses PROCESS::CLOCK_REALTIME. However, app validates whether short url already exists and if it does then a new URL is generated.
+
+* Future Improvements *
+
+* Search filters, pagination and sorting in index page for all shortened URLs
+* Better UX
+* Advance stats like browser, platform, geolocation of visitng users
+* Display title and screenshot from the linked site
+ 
