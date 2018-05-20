@@ -61,14 +61,28 @@ class LinksController < ApplicationController
     end
   end
 
+  def redirect
+    @link = Link.find_by(short_url: params[:short_url])
+    respond_to do |format|
+      if @link && @link.update(access_count: @link.access_count + 1)
+        format.html { redirect_to @link.full_url, status: 301 }
+        format.js {}
+      else 
+        format.html { redirect_to root_url, notice: "URL not found. Please try again or generate a new URL" }
+        format.js {}
+      end
+    end
+  end
+
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_link
       @link = Link.find(params[:id])
     end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
+    # Permit full_url alone.
     def link_params
-      params.require(:link).permit(:full_url, :short_url, :access_count)
+      params.require(:link).permit(:full_url)
     end
 end

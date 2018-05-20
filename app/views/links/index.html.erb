@@ -2,7 +2,7 @@
 
 <h1>Listing Links</h1>
 
-<table>
+<table border="1">
   <thead>
     <tr>
       <th>Full url</th>
@@ -15,8 +15,8 @@
   <tbody>
     <% @links.each do |link| %>
       <tr>
-        <td><%= link.full_url %></td>
-        <td><%= link.short_url %></td>
+        <td><%= link_to link.full_url, link.full_url, target: "_blank" %></td>
+        <td><%= link_to base_url(link.short_url), base_url(link.short_url), target: "_blank" %></td>
         <td><%= link.access_count %></td>
         <td><%= link_to 'Show', link %></td>
         <td><%= link_to 'Edit', edit_link_path(link) %></td>

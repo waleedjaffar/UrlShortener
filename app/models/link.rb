@@ -1,8 +1,8 @@
 class Link < ActiveRecord::Base
 
-  before_validation :generate_short_url
-  validates :full_url, :short_url, presence: true
-  validates :full_url, url: true
+  before_validation :generate_short_url, except: [:update]
+  validates :full_url, presence: true, url: true, allow_blank: false
+  validates :short_url, presence: true, uniqueness: true
 
   private
 
