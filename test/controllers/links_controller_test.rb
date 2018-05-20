@@ -3,6 +3,9 @@ require 'test_helper'
 class LinksControllerTest < ActionController::TestCase
   setup do
     @link = links(:one)
+    @create = {
+      full_url: 'http://newlink.com'
+    }
   end
 
   test "should get index" do
@@ -18,9 +21,10 @@ class LinksControllerTest < ActionController::TestCase
 
   test "should create link" do
     assert_difference('Link.count') do
-      post :create, link: { access_count: @link.access_count, full_url: @link.full_url, short_url: @link.short_url }
+      post :create, link: @create
     end
 
+    assert_not_nil assigns(:link).short_url
     assert_redirected_to link_path(assigns(:link))
   end
 

@@ -3,6 +3,7 @@ Rails.application.routes.draw do
   root  'links#index'
   
   get ':short_url' => 'links#redirect'
+  match 'shorten', to: 'links#create', via: :post
  
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
